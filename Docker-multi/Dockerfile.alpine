@@ -1,0 +1,10 @@
+FROM gcc:latest as builder
+MAINTAINER ehemdal@brandeis.edu
+RUN mkdir /myapp
+COPY ./code/hello.c /myapp
+WORKDIR /myapp
+RUN gcc -static -o myapp hello.c
+
+FROM alpine:latest
+COPY --from=builder /myapp/myapp /myapp
+ENTRYPOINT ./myapp
