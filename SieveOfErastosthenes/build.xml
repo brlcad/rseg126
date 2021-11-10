@@ -1,0 +1,50 @@
+<?xml version="1.0"?>
+
+<project name="Sieve of Erastosthenes" default="info" basedir=".">
+  <description>
+    RSEG126 Assignment 4 by CSM
+  </description>
+
+  <property name="src" location="."/>
+  <property name="build" location=".build"/>
+  <property name="build.sysclasspath" value="last"/>
+  
+  <target name="init">
+    <tstamp/>
+    <mkdir dir="${build}"/>
+  </target>
+
+  <target name="info">
+    <echo>Sieve of Erastosthenes by CSM for RSEG126</echo>
+    <echo/>
+    <echo>Ant targets: compile clean jar run</echo>
+  </target>
+
+  <target name="clean" depends="init">
+    <delete dir="${build}"/>
+  </target>
+
+  <target name="compile" depends="init">
+    <mkdir dir="${build}/classes"/>
+    <javac srcdir="${src}" destdir="${build}/classes"/>
+  </target>
+
+  <target name="jar" depends="compile">
+    <mkdir dir="${build}/jar"/>
+    <jar destfile="${build}/jar/SieveOfErastosthenes.jar" basedir="${build}/classes">
+      <manifest>
+        <attribute name="Main-Class" value="rseg126.SieveOfErastosthenes"/>
+      </manifest>
+    </jar>
+  </target>
+
+  <target name="run" depends="jar">
+    <java jar="${build}/jar/SieveOfErastosthenes.jar" fork="true"/>
+  </target>
+
+  <target name="run.eclipse" depends="jar">
+    <input message="Enter maximum number:" addproperty="max" defaultvalue="123"/>
+    <java jar="${build}/jar/SieveOfErastosthenes.jar" fork="true" inputstring="${max}"/>
+  </target>
+
+</project>
