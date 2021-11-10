@@ -1,8 +1,4 @@
 # RSEG-0126
-Example GitHub repository
+Repository for RSEG-0126 / Fall 2021.
 
-This is for RSEG-0126 / Fall 2021. If you have obtained
-this file, you have successfully completed a git pull
-operation.
-
-This repository also includes other files which we will see later in the course.
+This repository contains my assignments and other working files for/from the Release Control and Continuous Integration/Continuous Delivery (DevOps) course by Professor Erik Hemdal at Brandeis University.
