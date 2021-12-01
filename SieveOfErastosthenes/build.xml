@@ -39,7 +39,9 @@
   </target>
 
   <target name="run" depends="jar">
-    <java jar="${build}/jar/SieveOfErastosthenes.jar" fork="true"/>
+    <java jar="${build}/jar/SieveOfErastosthenes.jar" fork="true">
+      <sysproperty key="soe_max" value="${soe_max}"/>
+    </java>
   </target>
 
   <target name="run.eclipse" depends="jar">

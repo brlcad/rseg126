@@ -111,7 +111,26 @@ class SieveOfErastosthenes {
     System.out.println("The Sieve of Erastosthenes");
     System.out.println("==========================");
 
-    int max = promptInt(" Enter maximum number: ");
+    int max = -1;
+    String soe_max = System.getProperty("soe_max");
+    if (soe_max != null && soe_max.length() > 0 && soe_max.charAt(0) != '$') {
+      try {
+        max = Integer.parseInt(soe_max);
+      } catch (Exception e) {
+        /* sink it */
+        System.out.println("ERROR: unexpected property value");
+        System.exit(2);
+      }
+    }
+
+    if (max < 1) {
+      max = promptInt(" Enter maximum number: ");
+      if (max < 1) {
+        max = 1;
+      }
+    } else {
+      System.out.println("Using maximum number: " + max);
+    }
 
     List<Integer> primes = eratosthenize(2, max);
 
