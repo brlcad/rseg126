@@ -1,6 +1,6 @@
 /* Christopher Sean Morrison
  * RSEG126 Assignment 4, Due 9 Nov 2021
- * Sieve Of Erastosthenes in Java
+ * Sieve Of Eratosthenes in Java
  */
 
 package rseg126;
@@ -10,7 +10,7 @@ import java.util.List;
 import java.util.ArrayList;
 
 
-class SieveOfErastosthenes {
+class SieveOfEratosthenes {
 
   public static List<Integer> getIntList(int min, int max) {
     int i;
@@ -108,8 +108,8 @@ class SieveOfErastosthenes {
       System.exit(1);
     }
 
-    System.out.println("The Sieve of Erastosthenes");
-    System.out.println("==========================");
+    System.out.println("The Sieve of Eratosthenes");
+    System.out.println("=========================");
 
     int max = -1;
     String soe_max = System.getProperty("soe_max");
