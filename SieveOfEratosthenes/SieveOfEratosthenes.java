@@ -12,8 +12,6 @@ import java.util.ArrayList;
 
 class SieveOfEratosthenes {
 
-  typo!
-
   public static List<Integer> getIntList(int min, int max) {
     int i;
     List<Integer> list = new ArrayList<>(max - min +1);
