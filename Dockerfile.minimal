@@ -1,0 +1,25 @@
+FROM openjdk:8-jre-alpine
+MAINTAINER csm@brandeis.edu
+
+# get our precompiled class
+RUN wget https://github.com/brlcad/rseg126/archive/main.zip && \
+    unzip main.zip && \
+    mv rseg126-main/SieveOfEratosthenes/rseg126 . && \
+    rm -rf rseg126-main main.zip
+
+# set up ssh
+RUN apk add openssh-server ca-certificates && ssh-keygen -A
+RUN adduser -h / -s /bin/sh -u 1234 -D user && echo "user:password" | chpasswd
+
+# trim some unessentials
+RUN rm -rf /usr/share /media /usr/lib/libX11* /usr/lib/libfree* /usr/lib/libp11* /usr/lib/libnss* /usr/lib/libasound/* /usr/lib/libsql*
+
+# announce how to run on login
+RUN echo "echo \"==============================================\"" > /etc/motd && \
+    echo "echo \"Type 'java rseg126/SieveOfEratosthenes' to run ...\"" >> /etc/motd && \
+    echo "echo \"==============================================\"" >> /etc/motd
+
+EXPOSE 22
+
+# ENTRYPOINT java rseg126/SieveOfEratosthenes
+ENTRYPOINT /usr/sbin/sshd && /bin/sh
